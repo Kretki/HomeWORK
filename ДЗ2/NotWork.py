@@ -6,18 +6,13 @@ import cv2
 def conv_fast_iterated(img, kernel, x, y, result):
     offset = len(kernel)//2
     img1 = img[x-offset:x+offset+1, y-offset:y+offset+1]
-    result[x][y]+=np.sum(np.multiply(img1, kernel))
-    return result
+    result[x][y]=np.sum(np.multiply(img1, kernel))
 
 def conv_fast(img, kernel, result):
-    kernel = np.flip(kernel)
-    for i in kernel:
-        i = np.flip(i)
     offset = len(kernel)//2
     for i in range(offset, len(img)-offset):
         for j in range(offset, len(img[i])-offset):
-            result = conv_fast_iterated(img, kernel, i, j, result)
-    return result
+            conv_fast_iterated(img, kernel, i, j, result)
 
 image = cv2.imread('./ДЗ2/images/Puppy.png')
 image = cv2.cvtColor(image, cv2.COLOR_RGB2GRAY)
@@ -33,8 +28,12 @@ kernel = np.array(
     [1,0,-1]
 ])
 
+kernel = np.flip(kernel)
+for i in kernel:
+    i = np.flip(i)
+
 result = np.zeros_like(image)
-result = conv_fast(image, kernel, result)
+conv_fast(image, kernel, result)
 
 
 fig, axs = plt.subplots(1, 2, figsize = (10, 4))
