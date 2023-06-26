@@ -7,13 +7,13 @@ def conv_nested_iterated(img, kernel, x, y, result):
     for i in range(-(len(kernel)//2), len(kernel)//2+1):
         for j in range(-(len(kernel[i])//2), len(kernel[i])//2+1):
             result[x][y]+=img[x+i][y+j]*kernel[len(kernel)//2+i][len(kernel[i])//2+j]
-    #result[x][y]=result[x][y]//(len(kernel)*len(kernel))
+    #result[x][y]=result[x][y](len(kernel)*len(kernel))
     return result
 
 def conv_fast_iterated(img, kernel, x, y, result):
     offset = len(kernel)//2
     img1 = img[x-offset:x+offset+1, y-offset:y+offset+1]
-    result[x][y]+=np.sum(np.multiply(img1, kernel))#//(len(kernel)*len(kernel))
+    result[x][y]+=np.sum(np.multiply(img1, kernel))//(len(kernel)*len(kernel))
     return result
 
 def conv_nested(img, kernel, result):
@@ -36,7 +36,7 @@ def conv_fast(img, kernel, result): #нужно сделать доп пусты
             result = conv_fast_iterated(img, kernel, i, j, result)
     return result
 
-image = cv2.imread('./ДЗ2/images/Puppy.png')
+image = cv2.imread('./ДЗ2/images/dog.jpg')
 image = cv2.cvtColor(image, cv2.COLOR_RGB2GRAY)
 image = image.astype('uint8')
 
