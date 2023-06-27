@@ -2,6 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from time import time
 import cv2
+import os
 
 def find_piece(img1, img2):
     rows1, cols1 = img1.shape
@@ -45,11 +46,11 @@ def connect_images(img1, img2, place):
     return result
 
 
-img1 = cv2.imread('./ДЗ3/images/china_street_cut/image_part_04.jpg')
+img1 = cv2.imread('./HW3/images/china_street_cut/image_part_04.jpg')
 img1_bw = cv2.cvtColor(img1, cv2.COLOR_BGR2GRAY)
 img1 = cv2.cvtColor(img1, cv2.COLOR_BGR2RGB)
 
-img2 = cv2.imread('./ДЗ3/images/china_street_cut/image_part_05.jpg')
+img2 = cv2.imread('./HW3/images/china_street_cut/image_part_05.jpg')
 img2_bw = cv2.cvtColor(img2, cv2.COLOR_BGR2GRAY)
 img2 = cv2.cvtColor(img2, cv2.COLOR_BGR2RGB)
 
@@ -61,11 +62,9 @@ result = connect_images(img1, img2, place)
 fig, axs = plt.subplots(1, 3, figsize = (10, 4))
 ax1, ax2, ax3 = axs
 
-#image = cv2.cvtColor(image, cv2.COLOR_GRAY2RGB)
 ax1.imshow(img1.copy())
 ax1.set_title('img1', fontsize=15)
 
-#result = cv2.cvtColor(result, cv2.COLOR_GRAY2RGB)
 ax2.imshow(img2.copy())
 ax2.set_title('img2', fontsize=15)
 
