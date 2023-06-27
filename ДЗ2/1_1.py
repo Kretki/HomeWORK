@@ -38,7 +38,7 @@ def conv_fast(img, kernel, result): #нужно сделать доп пусты
 
 image = cv2.imread('./ДЗ2/images/dog.jpg')
 image = cv2.cvtColor(image, cv2.COLOR_RGB2GRAY)
-image = image.astype('uint8')
+#image = image.astype('uint8')
 
 plt.rcParams['image.interpolation'] = 'nearest'
 plt.rcParams['image.cmap'] = 'gray'
@@ -57,7 +57,7 @@ result = np.zeros_like(image)
 
 t1 = time()
 #result = cv2.filter2D(image.copy(), -1, kernel)
-result = conv_fast(image, kernel, result)
+result = conv_nested(image, kernel, result)
 t2 = time()
 print(f'секунд - {t2 - t1}')
 print(result)
@@ -69,7 +69,7 @@ ax1, ax2 = axs
 ax1.imshow(image.copy())
 ax1.set_title('Начальное изображение', fontsize=15)
 
-result = result.astype('uint8')
+#result = result.astype('uint8')
 #result = cv2.cvtColor(result, cv2.COLOR_GRAY2RGB)
 ax2.imshow(result.copy())
 ax2.set_title('Конечное изображение', fontsize=15)

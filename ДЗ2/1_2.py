@@ -2,7 +2,6 @@ import numpy as np
 import matplotlib.pyplot as plt
 from time import time
 import cv2
-
 def conv_fast_iterated(img, kernel, x, y, result):
     offset = len(kernel)//2
     img1 = img[x-offset:x+offset+1, y-offset:y+offset+1]
