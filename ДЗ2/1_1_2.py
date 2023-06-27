@@ -6,12 +6,13 @@ from time import time
 def conv_fast(image, kernel):
     rows, cols = image.shape
     ker_rows, ker_cols = kernel.shape
+    kernel = np.flip(np.flip(kernel, 0), 1)
     result = np.zeros((rows, cols))
     image1 = np.zeros((rows+2*(ker_rows//2), cols+2*(ker_cols//2)))
     image1[ker_rows//2:rows+ker_rows//2, ker_cols//2:cols+ker_cols//2] = image
     for x in range(rows):
         for y in range(cols):
-            result[x, y] = np.sum(image1[x:x+ker_cols,y:y+ker_rows]*np.flip(kernel))
+            result[x, y] = np.sum(image1[x:x+ker_rows,y:y+ker_cols]*kernel)
     return result
 
 plt.rcParams['figure.figsize'] = (10.0, 8.0) # set default size of plots
