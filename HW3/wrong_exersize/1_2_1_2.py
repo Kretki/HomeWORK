@@ -103,6 +103,7 @@ def connect_images(img1, img2, place):
         temp = img1
         img1 = img2
         img2 = temp
+    print(place)
 
     rows1, cols1, _ = img1.shape
     rows2, cols2, _ = img2.shape
@@ -139,7 +140,7 @@ def compete_images(images):
     return result
 
 images = []
-for i in [4, 5, 3]:
+for i in [4, 5]:
     images.append(cv2.imread(f'./HW3/images/china_street_cut/image_part_0{i}.jpg'))
 
 result = compete_images(images)
